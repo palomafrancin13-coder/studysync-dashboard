@@ -35,9 +35,8 @@ async function cadastrar() {
 
     console.log(data);
 
-    alert("Usuário cadastrado!");
+    mostrarAviso("Usuário cadastrado com sucesso!", "sucesso");
 }
-
 async function login() {
     const email =
         document.getElementById(
@@ -83,9 +82,7 @@ async function login() {
 
         window.location.href =
             "dashboard.html";
-    } else {
-        alert(
-            "Email ou senha inválidos"
+    mostrarAviso("Email ou Senha incorretos", "erro");
         );
     }
 }
@@ -164,10 +161,12 @@ async function criarAtividade() {
 
     console.log(dataResponse);
 
-    alert(
-        editandoId
-            ? "Atividade atualizada!"
-            : "Atividade criada!"
+   mostrarAviso(
+    editandoId
+        ? "Atividade atualizada com sucesso!"
+        : "Atividade criada com sucesso!",
+    "sucesso"
+);
     );
 
     listarAtividades();
@@ -305,9 +304,9 @@ async function deletarAtividade(
 
     console.log(response);
 
-    alert("Atividade excluída!");
+    mostrarAviso("Atividade excluída com sucesso!", "sucesso");
 
-    listarAtividades();
+listarAtividades();
 }
 
 function editarAtividade(
