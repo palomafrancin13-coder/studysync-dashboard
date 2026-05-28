@@ -35,22 +35,22 @@
         <div class="bg-white p-8 rounded-3xl shadow-2xl mb-8">
 
             <input id="titulo" type="text" placeholder="Título"
-                class="w-full border border-gray-300 p-4 rounded-2xl mb-4 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-4 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition">
 
             <textarea id="descricao" placeholder="Descrição"
-                class="w-full border border-gray-300 p-4 rounded-2xl mb-4 focus:outline-none focus:ring-4 focus:ring-blue-300 transition"></textarea>
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-4 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition"></textarea>
 
             <input id="data" type="date"
-                class="w-full border border-gray-300 p-4 rounded-2xl mb-4 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-4 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition">
 
             <select id="status"
-                class="w-full border border-gray-300 p-4 rounded-2xl mb-4 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-4 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition">
                 <option>Pendente</option>
                 <option>Concluído</option>
             </select>
 
             <select id="prioridade"
-                class="w-full border border-gray-300 p-4 rounded-2xl mb-6 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-6 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition">
                 <option>Baixa</option>
                 <option>Média</option>
                 <option>Alta</option>
@@ -71,9 +71,121 @@
         </button>
 
     </div>
-<div id="toast" class="fixed top-5 right-5 hidden"></div>
+    <div id="toast" class="hidden"></div>
     <script src="app.js"></script>
 
 </body>
+<div id="modal-confirm" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-2xl shadow-xl w-80 text-center">
+
+        <p class="text-lg font-semibold mb-4">Deseja realmente excluir?</p>
+
+        <div class="flex justify-center gap-4">
+            <button id="btn-nao" class="bg-gray-400 text-white px-4 py-2 rounded-xl">
+                Não
+            </button>
+
+            <button id="btn-sim" class="bg-red-500 text-white px-4 py-2 rounded-xl">
+                Sim
+            </button>
+        </div>
+
+    </div>
+</div>
+
+</html>!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudySync</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-[#1e293b] min-h-screen p-8">
+
+    <div class="max-w-4xl mx-auto">
+
+        <h1 class="text-5xl font-extrabold text-center text-amber-500 mb-2">
+            StudySync
+        </h1>
+
+        <p id="usuario-logado" class="text-center text-white mb-4"></p>
+
+        <p class="text-center text-gray-200 mb-8 text-lg">
+
+            Gerencie suas tarefas com praticidade!
+        </p>
+
+        <div class="bg-white p-8 rounded-3xl shadow-2xl mb-8">
+
+            <input id="titulo" type="text" placeholder="Título"
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-4 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition">
+
+            <textarea id="descricao" placeholder="Descrição"
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-4 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition"></textarea>
+
+            <input id="data" type="date"
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-4 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition">
+
+            <select id="status"
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-4 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition">
+                <option>Pendente</option>
+                <option>Concluído</option>
+            </select>
+
+            <select id="prioridade"
+                class="w-full border border-gray-300 bg-gray-50 p-4 rounded-2xl mb-6 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-300 focus:bg-white transition">
+                <option>Baixa</option>
+                <option>Média</option>
+                <option>Alta</option>
+            </select>
+
+            <button onclick="criarAtividade()"
+                class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:scale-105 transition duration-300 text-white font-bold py-4 rounded-2xl shadow-xl">
+                Salvar Atividade
+            </button>
+
+        </div>
+
+        <div id="lista-atividades"></div>
+
+        <button onclick="logout()"
+            class="mt-6 bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-2xl transition duration-300 text-white font-semibold px-8 py-3 rounded-2xl shadow-xl">
+            Sair
+        </button>
+
+    </div>
+    <div id="toast" class="hidden"></div>
+    <script src="app.js"></script>
+
+</body>
+<div id="modal-confirm" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-2xl shadow-xl w-80 text-center">
+
+        <p class="text-lg font-semibold mb-4">Deseja realmente excluir?</p>
+
+        <div class="flex justify-center gap-4">
+            <button id="btn-nao" class="bg-gray-400 text-white px-4 py-2 rounded-xl">
+                Não
+            </button>
+
+            <button id="btn-sim" class="bg-red-500 text-white px-4 py-2 rounded-xl">
+                Sim
+            </button>
+        </div>
+
+    </div>
+</div>
 
 </html>
