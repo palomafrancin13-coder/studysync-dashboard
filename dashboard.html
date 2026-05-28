@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-[#1e293b] min-h-screen p-8">
+
+    <div class="max-w-4xl mx-auto">
+
+        <h1 class="text-5xl font-extrabold text-center text-amber-500 mb-2">
+            StudySync
+        </h1>
+
+        <p id="usuario-logado" class="text-center text-white mb-4"></p>
+
+        <p class="text-center text-gray-200 mb-8 text-lg">
+
+            Gerencie suas tarefas com praticidade!
+        </p>
+
+        <div class="bg-white p-8 rounded-3xl shadow-2xl mb-8">
+
+            <input id="titulo" type="text" placeholder="Título"
+                class="w-full border border-gray-300 p-4 rounded-2xl mb-4 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+
+            <textarea id="descricao" placeholder="Descrição"
+                class="w-full border border-gray-300 p-4 rounded-2xl mb-4 focus:outline-none focus:ring-4 focus:ring-blue-300 transition"></textarea>
+
+            <input id="data" type="date"
+                class="w-full border border-gray-300 p-4 rounded-2xl mb-4 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+
+            <select id="status"
+                class="w-full border border-gray-300 p-4 rounded-2xl mb-4 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+                <option>Pendente</option>
+                <option>Concluído</option>
+            </select>
+
+            <select id="prioridade"
+                class="w-full border border-gray-300 p-4 rounded-2xl mb-6 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+                <option>Baixa</option>
+                <option>Média</option>
+                <option>Alta</option>
+            </select>
+
+            <button onclick="criarAtividade()"
+                class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:scale-105 transition duration-300 text-white font-bold py-4 rounded-2xl shadow-xl">
+                Salvar Atividade
+            </button>
+
+        </div>
+
+        <div id="lista-atividades"></div>
+
+        <button onclick="logout()"
+            class="mt-6 bg-gradient-to-r from-red-500 to-red-700 hover:scale-105 hover:shadow-2xl transition duration-300 text-white font-semibold px-8 py-3 rounded-2xl shadow-xl">
+            Sair
+        </button>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

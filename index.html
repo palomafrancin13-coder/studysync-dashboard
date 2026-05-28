@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sistema de Estudos</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#1e293b] flex justify-center items-center h-screen">
+  <div class="bg-white p-10 rounded-2xl shadow-2xl shadow-black/60">
+
+    <h1 <h1 class="text-5xl font-extrabold text-center text-amber-500 mb-10 -mt-3 drop-shadow-[1px_1px_0px_black]">
+      StudySync
+    </h1>
+
+    <input id="email" type="email" placeholder="Digite seu email"
+      class="border p-3 rounded-2xl w-full mb-5 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+
+    <input id="senha" type="password" placeholder="Digite sua senha"
+      class="border p-3 rounded-2xl w-full mb-5 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+
+    <button onclick="login()"
+      class="w-full p-3 mb-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105">
+      Entrar
+    </button>
+
+    <button onclick="cadastrar()"
+      class="w-full p-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-105">
+      Cadastrar
+    </button>
+
+    </button>
+
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
